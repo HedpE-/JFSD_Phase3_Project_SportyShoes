@@ -48,6 +48,9 @@
 											<p class="lead display-5 text-180">
 													${purchase.getShoe().getModel()}
 											</p>
+											<p class="lead display-5 text-180">
+													${purchase.getCategory().getName()}
+											</p>
 								        </div>
 										<div class="col text-center">
 											<h4 class="pt-3 text-primary-d1 letter-spacing">

@@ -63,7 +63,7 @@
 						<input class="form-check-input" type="checkbox" value="yes" id="admin_request" name="admin_request">
 						<label class="form-check-label" for="admin_request">Request Admin access</label>
 					</div>
-					<c:if test="${param.redirect ne null && param.redirect != ''}">
+					<c:if test="${param.redirect ne null && !param.redirect.equals('')}">
 						<input type="hidden" name="redirect" value="${param.redirect}">
 					</c:if>
 					<div class="form-group w-100 text-center">
@@ -72,7 +72,7 @@
 				</div>
 			</form>
 			<p class="text-center w-100">Have an account?
-				<a href="login.jsp<%String redirect = request.getParameter("redirect"); if(redirect != null && redirect != "") out.print("?redirect=" + redirect); %>">Sign In</a>
+				<a href="signin${param.redirect ne null && !param.redirect.equals('') ? '?redirect=' + param.redirect : ''}">Sign In</a>
 			</p>
 		</div>
 	</div>
@@ -81,7 +81,7 @@
 		<div id="adminToast" class="toast" role="alert" aria-live="assertive" aria-atomic="true">
 			<div class="toast-header">
 				<img src="..." class="rounded me-2" alt="...">
-				<strong class="me-auto">FlyAway</strong>
+				<strong class="me-auto">SportyShoes</strong>
 				<button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
 			</div>
 			<div class="toast-body">
