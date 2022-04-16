@@ -86,14 +86,7 @@ public class AdminController {
 	public String filterPurchases(@RequestParam int categoryFilter,
 			@RequestParam(required = false) String dateFilter,
 			Map<String, Object> map) {
-		Date date = null;
-		try {
-			date = new SimpleDateFormat("yyyy-MM-dd").parse(dateFilter);
-		}
-		catch(Exception e) {
-			e.printStackTrace();
-		}
-		map.put("viewContext", crudHelper.getPurchases(categoryFilter, dateFilter));
+		map.put("viewContext", crudHelper.filterPurchases(categoryFilter, dateFilter));
 		
 		return "purchasesMasterlist";
 	}

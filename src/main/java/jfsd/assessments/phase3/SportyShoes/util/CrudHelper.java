@@ -161,7 +161,7 @@ public class CrudHelper {
 	// Purchases
 	//
 
-	public List<Purchase> getPurchases(int categoryFilter, String dateFilter) {
+	public List<Purchase> filterPurchases(int categoryFilter, String dateFilter) {
 		Session session = null;
 		try {
 			String conditions = "";
@@ -170,20 +170,19 @@ public class CrudHelper {
 					conditions += " where ";
 				conditions += "categoryid = :categoryid";
 			}
-			if (dateFilter != null) {
+			if (dateFilter != null && !dateFilter.equals("")) {
 				if (conditions == "")
 					conditions += " where ";
 				else
 					conditions += " and ";
 				conditions += "day(purchase_date) = day(:purchase_date) AND month(purchase_date) = month(:purchase_date) AND year(purchase_date) = year(:purchase_date)";
-//				conditions += "FORMAT(purchase_date, 'yyyy-MM-dd') = :purchase_date";
 			}
 
 			session = factory.openSession();
 			Query<Purchase> query = session.createQuery("FROM Purchase" + conditions, Purchase.class);
 			if (categoryFilter > -1)
 				query.setParameter("categoryid", categoryFilter);
-			if (dateFilter != null)
+			if (dateFilter != null && !dateFilter.equals(""))
 				query.setParameter("purchase_date", dateFilter);
 
 			List<Purchase> purchases = query.list();
